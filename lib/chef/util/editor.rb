@@ -62,8 +62,9 @@ class Chef
 
         @lines.map! do |line|
           if line.match(search)
-            count += 1
-            line.gsub!(search, replace)
+            if line.gsub!(search, replace)
+              count += 1
+            end
           else
             line
           end
@@ -77,8 +78,10 @@ class Chef
 
         @lines.map! do |line|
           if line.match(search)
-            count += 1
-            replace
+            if line != replace
+              count += 1
+              replace
+            end
           else
             line
           end
